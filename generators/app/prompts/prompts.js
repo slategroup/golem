@@ -1,15 +1,15 @@
 const path = require("path");
 const utilsPath = path.resolve(__dirname, "..", "utils");
 const { inputExists } = require(`${utilsPath}/validators.js`);
-const { makeLowerCase, spacesToDashes } = require(`${utilsPath}/filters.js`);
+const { spacesToDashes } = require(`${utilsPath}/filters.js`);
 
 const prompts = {
   namePrompt: {
     type: "input",
     name: "componentName",
     message: "What's the name of your component?",
-    async filter(input) {
-      const lowerCaseName = await makeLowerCase(input);
+    filter(input) {
+      const lowerCaseName = input.toLowerCase();
       return spacesToDashes(lowerCaseName);
     },
     validate(input) {
