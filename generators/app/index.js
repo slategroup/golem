@@ -12,8 +12,13 @@ module.exports = class extends Generator {
     this.answers = await this.prompt([namePrompt, descriptionPrompt]);
   }
 
+  configuring() {
+    this.config.save();
+  }
+
   writing() {
-    this.destinationRoot(this.answers.componentName);
+    this.destinationRoot(path.join("components", this.answers.componentName));
+    this.log(this.destinationRoot());
 
     this.fs.copyTpl(
       this.templatePath("**/*"),
